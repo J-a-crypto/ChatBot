@@ -1,15 +1,4 @@
-1 of 41
-s
-Inbox
-Jonathan Suconota
-	
- 
-	10:44 PM (6 minutes ago)
-Jonathan Suconota <jsuconota1@gmail.com>
-	
-10:44 PM (6 minutes ago)
-	
-to me
+
 import {NextResponse} from 'next/server' // Import NextResponse from Next.js for handling responses
 import {GoogleGenerativeAI} from '@google/generative-ai' // Import OpenAI library for interacting with the OpenAI API
 
