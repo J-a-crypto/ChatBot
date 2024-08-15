@@ -3,7 +3,7 @@ import {NextResponse} from 'next/server' // Import NextResponse from Next.js for
 import {GoogleGenerativeAI} from '@google/generative-ai' // Import OpenAI library for interacting with the OpenAI API
 
 // System prompt for the AI, providing guidelines on how to respond to users
-const systemPrompt = 'You will help solve math problems' // Use your own system prompt here
+const systemPrompt = ' help solve math problems by solving it step by step' // Use your own system prompt here
 
 
 
@@ -11,15 +11,16 @@ const systemPrompt = 'You will help solve math problems' // Use your own system 
 export async function POST(req) {
   const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
   console.log("sucess connecting to Gemini");
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 
-const data = await req.json()
-console.log(data)
+  const data = await req.json()
+  console.log(data)
 
-const prompt = `You are a system 'system' and your goal is to ${systemPrompt}`;
+  const userPrompt = data[data.length -1]?.content || '';
+  const prompt = `You are a system and your goal is to ${systemPrompt}. Here's the user's question: "${userPrompt}"`;
 
-const result = await model.generateContentStream(prompt);
+  const result = await model.generateContentStream(prompt);
 //console.log(result)
 // Print text as it comes in.
 
